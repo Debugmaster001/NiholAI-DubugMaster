@@ -1,0 +1,740 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Page title index" %}{% endblock %}
+
+{% block content %}
+
+  <section class="nv-hero" id="hero">
+    <div class="nv-hero-bg" aria-hidden="true">
+      <span class="nv-hero-blob nv-hero-blob-1"></span>
+      <span class="nv-hero-blob nv-hero-blob-2"></span>
+      <span class="nv-hero-mesh"></span>
+    </div>
+
+    <div class="container position-relative nv-hero-inner">
+      <div class="row align-items-center gy-9">
+        <!-- Copy -->
+        <div class="col-lg-6 pt-lg-2">
+          <span class="nv-hero-badge nv-reveal" style="--d:.05s">
+            <span class="nv-hero-badge-dot"></span>
+            {% trans "Hero badge" %}
+          </span>
+          <h1 class="nv-hero-title nv-reveal" style="--d:.12s">
+            {% trans "Hero title line1" %}
+            <span class="nv-hero-accent">{% trans "Hero title highlight" %}</span>
+            {% trans "Hero title line2" %}
+          </h1>
+          <p class="nv-hero-sub nv-reveal" style="--d:.2s">
+            {% trans "Hero subtitle" %}
+          </p>
+          <div class="nv-hero-cta nv-reveal" style="--d:.28s">
+            <a href="{% url 'core:demo' %}" class="nv-cta-btn">
+              <i class="ti ti-sparkles"></i>{% trans "ESG AI" %}
+              <span class="nv-cta-arrow"><i class="ti ti-arrow-right"></i></span>
+            </a>
+            <a href="#about-project" class="nv-cta-ghost">
+              <i class="ti ti-player-play"></i>{% trans "Learn more" %}
+            </a>
+          </div>
+          <div class="nv-hero-stats nv-reveal" style="--d:.36s">
+            <div class="nv-hero-stat nv-hero-stat--nolabel">
+              <span class="nv-hero-stat-lbl">{% trans "Green criteria" %}</span>
+            </div>
+            <div class="nv-hero-stat nv-hero-stat--nolabel">
+              <span class="nv-hero-stat-lbl">{% trans "Stop factors" %}</span>
+            </div>
+            <div class="nv-hero-stat">
+              <span class="nv-hero-stat-num" data-countup="3">0</span>
+              <span class="nv-hero-stat-lbl">{% trans "ESG scores" %}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Concept illustration: synthetic display scores, NOT a live evaluation -->
+        <div class="col-lg-6">
+          <div class="nv-flow nv-reveal" title="Illustrative UI graphic — not a live score" style="--d:.24s" aria-hidden="true">
+            <!-- 1. document being scanned -->
+            <div class="nv-flow-doc">
+              <div class="nv-flow-doc-head">
+                <span class="nv-fd-dot"></span><span class="nv-fd-dot"></span><span class="nv-fd-dot"></span>
+                <span class="nv-fd-name">green_project.pdf</span>
+              </div>
+              <div class="nv-fd-lines">
+                <span style="width:82%"></span><span style="width:94%"></span>
+                <span style="width:70%"></span><span style="width:88%"></span>
+                <span style="width:60%"></span>
+              </div>
+              <span class="nv-fd-scan"></span>
+            </div>
+
+            <!-- 2. AI pill -->
+            <div class="nv-flow-ai">
+              {% include 'brand/_nihol_mark.html' with size=20 uid="flow" %}
+              <span>Nihol AI</span>
+              <span class="nv-flow-ai-spin"><i class="ti ti-loader-2"></i></span>
+            </div>
+
+            <!-- 3. concept card: illustrative sample values, not actual risk score -->
+            <div class="nv-flow-verdict">
+              <small style="display:block;text-align:right;font-size:10px;color:#c1d8ce;opacity:.85">Illustration / not a live decision</small>
+              <div class="nv-fv-top">
+                <span class="nv-fv-badge"><i class="ti ti-circle-check"></i>{% trans "Green" %}</span>
+                <span class="nv-fv-num">#2026 00042</span>
+              </div>
+              <div class="nv-fv-scores" title="Illustration only, not measured data">
+                <div class="nv-fv-score"><span class="nv-fv-ring"><i data-ring="90" style="--c:#059669"></i><b>90</b></span><span>E</span></div>
+                <div class="nv-fv-score"><span class="nv-fv-ring"><i data-ring="74" style="--c:#12d67a"></i><b>74</b></span><span>S</span></div>
+                <div class="nv-fv-score"><span class="nv-fv-ring"><i data-ring="82" style="--c:#0aa15a"></i><b>82</b></span><span>G</span></div>
+              </div>
+              <a href="{% url 'core:demo' %}" class="nv-fv-report">
+                <i class="ti ti-file-text"></i>{% trans "Download report" %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {% comment %}
+  <!-- ─── Platform demo (dashboard walkthrough) ──────────── -->
+  <section class="py-lg-13 py-8 position-relative nv-demo-sec" id="demo">
+    <div class="container">
+      <div class="row text-center mb-7">
+        <div class="col-lg-8 mx-auto">
+          <span class="text-primary text-uppercase small fw-semibold" style="letter-spacing:.125rem;">{% trans "Platform demo" %}</span>
+          <h2 class="fw-bold mt-4 mb-3">{% trans "See the" %} <span class="text-primary">{% trans "dashboard in action" %}</span></h2>
+          <p class="lead mb-0">{% trans "Demo subtitle" %}</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="nv-demo">
+            <div class="nv-demo-frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/rln93PZpr4Y?rel=0"
+                title="Nihol AI — Platform demo"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-auto">
+          <a href="https://youtu.be/rln93PZpr4Y" target="_blank" rel="noopener"
+             class="btn btn-outline-primary rounded-pill px-4">
+            <i class="ti ti-brand-youtube me-1"></i>{% trans "Watch on YouTube" %}
+          </a>
+        </div>
+      </div>
+
+      <!-- English presentation (Drive, plays inline) -->
+      <div class="row text-center mt-10 mb-6">
+        <div class="col-lg-8 mx-auto">
+          <span class="nv-short-lang"><i class="ti ti-presentation"></i>{% trans "Pitch deck" %} · EN</span>
+          <h3 class="fw-bold mt-3">{% trans "English presentation" %}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="nv-demo">
+            <div class="nv-demo-frame">
+              <iframe
+                src="https://drive.google.com/file/d/10WdE6sw0ljLknpD1bXhbmTlIcQrYsn9O/preview"
+                title="Nihol AI — Presentation (EN)"
+                loading="lazy"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-auto">
+          <a href="https://drive.google.com/file/d/10WdE6sw0ljLknpD1bXhbmTlIcQrYsn9O/view" target="_blank" rel="noopener"
+             class="btn btn-outline-primary rounded-pill px-4">
+            <i class="ti ti-external-link me-1"></i>{% trans "Open presentation" %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── About the Project ──────────────────────────────── -->
+  <section class="py-lg-13 py-8" id="about-project">
+    <div class="container">
+      <div class="row text-center mb-8">
+        <div class="col-lg-8 mx-auto">
+          <span class="text-primary text-uppercase small fw-semibold" style="letter-spacing: .125rem;">{% trans "About the Project" %}</span>
+          <h2 class="fw-bold mt-4 mb-3">Nihol AI <span class="text-primary">ESG AI</span></h2>
+          <p class="lead mb-0">{% trans "project tagline" %}</p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mb-8">
+        <div class="col-lg-9 text-center">
+          <p class="fs-5 text-secondary mb-0">{% trans "project overview" %}</p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mb-9">
+        <div class="col-lg-9">
+          <div class="nv-ps-stack">
+            <div class="nv-ps-card nv-ps-problem">
+              <div class="nv-ps-head">
+                <span class="nv-ps-ic danger"><i class="ti ti-alert-triangle"></i></span>
+                <h3 class="nv-ps-title">{% trans "The problem" %}</h3>
+              </div>
+              <p class="nv-ps-text">{% trans "project problem text" %}</p>
+            </div>
+            <div class="nv-ps-link" aria-hidden="true"><i class="ti ti-arrow-down"></i></div>
+            <div class="nv-ps-card nv-ps-solution">
+              <div class="nv-ps-head">
+                <span class="nv-ps-ic primary"><i class="ti ti-bulb"></i></span>
+                <h3 class="nv-ps-title">{% trans "Our solution" %}</h3>
+              </div>
+              <p class="nv-ps-text">{% trans "project solution text" %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="h4 fw-bold text-center mb-6">{% trans "How it works" %}</h3>
+      <div class="row g-4 mb-9">
+        <div class="col-lg-3 col-md-6">
+          <div class="text-center px-3">
+            <div class="position-relative d-inline-block mb-3">
+              <span class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center" style="width:72px;height:72px;"><i class="ti ti-upload fs-2"></i></span>
+              <span class="badge rounded-pill bg-primary position-absolute top-0 end-0">1</span>
+            </div>
+            <h4 class="h6 fw-bold">{% trans "Upload" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project step1 desc" %}</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="text-center px-3">
+            <div class="position-relative d-inline-block mb-3">
+              <span class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center" style="width:72px;height:72px;"><i class="ti ti-sparkles fs-2"></i></span>
+              <span class="badge rounded-pill bg-primary position-absolute top-0 end-0">2</span>
+            </div>
+            <h4 class="h6 fw-bold">{% trans "AI analysis" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project step2 desc" %}</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="text-center px-3">
+            <div class="position-relative d-inline-block mb-3">
+              <span class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center" style="width:72px;height:72px;"><i class="ti ti-chart-pie-2 fs-2"></i></span>
+              <span class="badge rounded-pill bg-primary position-absolute top-0 end-0">3</span>
+            </div>
+            <h4 class="h6 fw-bold">{% trans "Get scores" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project step3 desc" %}</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="text-center px-3">
+            <div class="position-relative d-inline-block mb-3">
+              <span class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center" style="width:72px;height:72px;"><i class="ti ti-checklist fs-2"></i></span>
+              <span class="badge rounded-pill bg-primary position-absolute top-0 end-0">4</span>
+            </div>
+            <h4 class="h6 fw-bold">{% trans "Take action" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project step4 desc" %}</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="h4 fw-bold text-center mb-6">{% trans "Who it is for" %}</h3>
+      <div class="row g-4 mb-6">
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm h-100 rounded-4 p-4 text-center">
+            <i class="ti ti-building-bank fs-1 text-primary mb-2"></i>
+            <h4 class="h6 fw-bold">{% trans "Banks" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project aud banks desc" %}</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm h-100 rounded-4 p-4 text-center">
+            <i class="ti ti-trending-up fs-1 text-primary mb-2"></i>
+            <h4 class="h6 fw-bold">{% trans "Investors" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project aud investors desc" %}</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm h-100 rounded-4 p-4 text-center">
+            <i class="ti ti-building-skyscraper fs-1 text-primary mb-2"></i>
+            <h4 class="h6 fw-bold">{% trans "Companies" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project aud companies desc" %}</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm h-100 rounded-4 p-4 text-center">
+            <i class="ti ti-scale fs-1 text-primary mb-2"></i>
+            <h4 class="h6 fw-bold">{% trans "Regulators" %}</h4>
+            <p class="small text-secondary mb-0">{% trans "project aud regulators desc" %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enterprise / on-premise deployment for banks -->
+      <div class="nv-ent" id="enterprise">
+        <div class="nv-ent-inner">
+          <div class="nv-ent-copy">
+            <span class="nv-ent-eyebrow"><i class="ti ti-shield-lock"></i>{% trans "For banks" %}</span>
+            <h3 class="nv-ent-title">{% trans "enterprise title" %}</h3>
+            <p class="nv-ent-lead">{% trans "enterprise lead" %}</p>
+            <ul class="nv-ent-list">
+              <li><i class="ti ti-server-2"></i><div><b>{% trans "ent feat1 t" %}</b><span>{% trans "ent feat1 d" %}</span></div></li>
+              <li><i class="ti ti-wifi-off"></i><div><b>{% trans "ent feat2 t" %}</b><span>{% trans "ent feat2 d" %}</span></div></li>
+              <li><i class="ti ti-lock-check"></i><div><b>{% trans "ent feat3 t" %}</b><span>{% trans "ent feat3 d" %}</span></div></li>
+              <li><i class="ti ti-cpu"></i><div><b>{% trans "ent feat4 t" %}</b><span>{% trans "ent feat4 d" %}</span></div></li>
+            </ul>
+          </div>
+          <div class="nv-ent-card">
+            <div class="nv-ent-badge"><span class="nv-ent-pulse"></span>{% trans "ent badge" %}</div>
+            <div class="nv-ent-diagram">
+              <div class="nv-ent-node bank"><i class="ti ti-building-bank"></i><span>{% trans "ent node bank" %}</span></div>
+              <div class="nv-ent-wire"><i class="ti ti-arrows-exchange"></i></div>
+              <div class="nv-ent-node core"><i class="ti ti-server-cog"></i><span>{% trans "ent node server" %}</span></div>
+            </div>
+            <a href="{% url 'core:index' %}#contact" class="nv-ent-cta">
+              <i class="ti ti-message-2"></i>{% trans "ent cta" %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="{% url 'dashboard:index' %}" class="btn btn-primary btn-lg rounded-pill px-5">
+          <i class="ti ti-sparkles me-1"></i>{% trans "Try the ESG Dashboard" %}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact Section ────────────────────────────────── -->
+  <section class="py-5 text-center" id="contact"><div class="container">
+   <h2 class="fw-bold">DubugMaster · Nihol AI</h2>
+   <p>Hackathon prototipi. Bank ma’lumotlarini bu ochiq xizmatga yuklamang.</p>
+   <a class="btn btn-success rounded-pill px-4" href="{% url 'core:demo' %}">Jonli skriningni sinash</a>
+  </div></section>
+
+
+  {% comment %} <section class="py-lg-13 py-8 " id="pricing">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center mb-10">
+            <span class="text-primary text-uppercase small fw-semibold" style="letter-spacing: .125rem;">Pricing</span>
+            <h2 class="fw-bold mt-4 mb-4">Simple, Transparent<span class="text-primary"> Pricing</span> </h2>
+            <p>Choose the plan that fits your learning goals. No hidden fees, cancel anytime.</p>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row g-4 mx-xxl-13">
+        <div class="col-lg-4">
+          <div class="card shadow-sm rounded-5 h-100">
+            <div class="card-body p-6">
+              <div class="text-center mt-5 mb-9">
+                <span class="text-dark fs-5 fw-bold">Starter</span>
+                <p class="mt-1">Perfect for beginners</p>
+
+                <h3 class="fw-bold h2">Free</h3>
+              </div>
+              <div class="mb-4">
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Access to 10 free courses</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Basic community access</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Email support</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Mobile app access</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Course completion certificates</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="d-grid">
+                <a href="#!" class="btn btn-light">
+                  Get Started
+                </a>
+              </div>
+
+
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-lg-4">
+          <div class="card shadow-sm rounded-5 h-100 border-primary">
+            <div class="card-body p-6">
+              <div class="text-center mt-5 mb-9">
+                <span class="text-dark fs-5 fw-bold">Pro</span>
+                <p class="mt-1">Most popular choice</p>
+                <div class="d-flex gap-0 justify-content-center align-items-end">
+                  <h3 class="fw-bold h2 mb-0">$29
+                  </h3>
+                  <span>/month</span>
+                </div>
+              </div>
+              <div class="mb-4">
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Unlimited course access</span>
+
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Full community features</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Priority support 24/7</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Downloadable resources</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Live Q&A sessions</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Project reviews</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Career coaching</span>
+                  </li>
+
+
+
+                </ul>
+              </div>
+              <div class="d-grid">
+                <a href="#!" class="btn btn-primary">
+                  Start Pro Trial
+                </a>
+              </div>
+
+
+
+
+
+            </div>
+            <div>
+              <span
+                class="badge bg-primary position-absolute top-0 start-50 translate-middle-x mt-n3 rounded-pill text-xs">
+                Most Popular
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-lg-4">
+          <div class="card shadow-sm rounded-5 h-100">
+            <div class="card-body p-6">
+              <div class="text-center mt-5 mb-9">
+                <span class="text-dark fs-5 fw-bold">Enterprise</span>
+                <p class="mt-1">For teams & organizations</p>
+                <div class="d-flex gap-0 justify-content-center align-items-end">
+                  <h3 class="fw-bold h2 mb-0">$99
+
+                  </h3>
+                  <span>/month</span>
+                </div>
+              </div>
+              <div class="mb-4">
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Everything in Pro</span>
+
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Custom learning paths</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Team analytics dashboard</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Dedicated success manager</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Custom integrations</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>SSO authentication</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l5 5l10 -10" />
+                      </svg>
+                    </span>
+                    <span>Invoice billing</span>
+                  </li>
+
+
+
+                </ul>
+              </div>
+              <div class="d-grid">
+                <a href="#!" class="btn btn-light">
+                  Contact Sales
+                </a>
+              </div>
+
+
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="row mt-8">
+        <div class="col-12 text-center">
+
+
+          <p class="mb-0 small">All plans include a 14-day money-back guarantee. No questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </section> {% endcomment %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-5">
+
+        <div class="modal-body p-6">
+          <div class=" mb-3">
+
+            <div class="d-flex justify-content-between">
+              <h1 class="card-title mb-5 h5">Create your account</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+
+          <form class="mt-3">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full name</label>
+              <input id="fullName" type="text" class="form-control" placeholder="Jane Doe" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input id="email" type="email" class="form-control" placeholder="name@example.com" required>
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input id="password" type="password" class="form-control" placeholder="Create a password" required
+                minlength="6">
+              <div class="invalid-feedback">Please provide a password (min 6 characters).</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm password</label>
+              <input id="confirmPassword" type="password" class="form-control" placeholder="Repeat password" required>
+              <div class="invalid-feedback">Passwords must match.</div>
+            </div>
+
+            <div class="mb-3 form-check">
+              <input id="terms" class="form-check-input" type="checkbox" required>
+              <label class="form-check-label small" for="terms">I agree to the <a href="#"
+                  class="text-decoration-none">terms and privacy</a></label>
+              <div class="invalid-feedback">You must agree before continuing.</div>
+            </div>
+            <div>
+
+              <button class="btn btn-primary" type="submit">Sign up</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+

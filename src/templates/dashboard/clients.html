@@ -1,0 +1,67 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load i18n %}
+{% block title %}{% trans "Clients" %} — Nihol AI{% endblock %}
+
+{% block content %}
+<div class="nv-page-head">
+  <div>
+    <span class="nv-eyebrow">{% trans "Portfolio" %}</span>
+    <h1 class="nv-page-title">{% trans "Clients" %}</h1>
+    <p class="nv-page-sub">{% trans "Green loan portfolio — clients, credit terms and green classification." %}</p>
+  </div>
+  <a href="{% url 'dashboard:new' %}" class="nv-btn nv-btn-primary"><i class="ti ti-sparkles"></i>{% trans "New analysis" %}</a>
+</div>
+
+{% if clients %}
+<div class="nv-card" data-rise>
+  <div class="nv-table-wrap">
+    <table class="nv-table nv-portfolio">
+      <thead><tr>
+        <th>№</th>
+        <th>{% trans "Region code" %}</th>
+        <th>{% trans "Segment" %}</th>
+        <th>{% trans "Client name" %}</th>
+        <th>{% trans "Contract ID" %}</th>
+        <th>{% trans "Currency" %}</th>
+        <th class="num">{% trans "Rate, %" %}</th>
+        <th>{% trans "Credit purpose" %}</th>
+        <th>{% trans "Green direction" %}</th>
+        <th>{% trans "Green mark" %}<span class="nv-th-sub">{% trans "MoF regulation" %}</span></th>
+        <th>{% trans "Credit product" %}</th>
+        <th>{% trans "Sector" %}</th>
+        <th>{% trans "Field" %}</th>
+      </tr></thead>
+      <tbody>
+        {% for c in clients %}
+        <tr onclick="location='{% url 'dashboard:client_detail' c.pk %}'">
+          <td class="num nv-muted">{{ forloop.counter }}</td>
+          <td class="num">{{ c.region_code|default:"—" }}</td>
+          <td>{{ c.segment|default:"—" }}</td>
+          <td class="nv-cell-name">
+            <span class="nv-name-main">{{ c.name }}</span>
+            {% if c.region %}<span class="nv-name-sub">{{ c.region }}</span>{% endif %}
+          </td>
+          <td class="nv-mono">{{ c.contract_id|default:"—" }}</td>
+          <td><span class="nv-pill neutral nv-ccy">{{ c.currency|default:"—" }}</span></td>
+          <td class="num">{% if c.credit_rate != None %}{{ c.credit_rate }}{% else %}—{% endif %}</td>
+          <td class="nv-cell-wide">{{ c.credit_purpose|default:"—" }}</td>
+          <td class="nv-cell-wide">{{ c.green_direction|default:"—" }}</td>
+          <td>
+            {% if c.green_mark == "EM1" %}<span class="nv-em nv-em1">EM1</span>
+            {% elif c.green_mark == "EM2" %}<span class="nv-em nv-em2">EM2</span>
+            {% elif c.green_mark %}<span class="nv-em">{{ c.green_mark }}</span>
+            {% else %}<span class="nv-muted">—</span>{% endif %}
+          </td>
+          <td>{{ c.credit_product|default:"—" }}</td>
+          <td>{{ c.sector|default:"—" }}</td>
+          <td>{{ c.field|default:"—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% else %}
+<div class="nv-card"><div class="nv-empty"><i class="ti ti-users-group"></i><p>{% trans "No clients yet." %}</p></div></div>
+{% endif %}
+{% endblock %}

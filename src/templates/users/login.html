@@ -1,0 +1,28 @@
+{% extends 'users/_auth_base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Log in" %} — Nihol AI{% endblock %}
+
+{% block auth_content %}
+<h1 class="nv-auth-title">{% trans "Log in" %}</h1>
+<p class="nv-auth-sub">{% trans "Welcome back — sign in to continue." %}</p>
+
+{% if form.errors %}
+<div class="nv-pill bad nv-auth-err"><i class="ti ti-alert-circle"></i>{% trans "Incorrect email or password. Please try again." %}</div>
+{% endif %}
+
+<form method="post" novalidate class="nv-auth-form">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <div class="nv-field">
+    <label class="nv-label">{% trans "Email" %}</label>
+    <input type="email" name="username" class="nv-input" placeholder="name@bank.uz" autocomplete="username" autofocus required>
+  </div>
+  <div class="nv-field">
+    <label class="nv-label">{% trans "Password" %}</label>
+    <input type="password" name="password" class="nv-input" placeholder="••••••••" autocomplete="current-password" required>
+  </div>
+  <button type="submit" class="nv-btn nv-btn-primary block"><i class="ti ti-login-2"></i>{% trans "Log in" %}</button>
+</form>
+
+<p class="nv-auth-alt">{% trans "No account yet?" %} <a href="{% url 'users:register' %}">{% trans "Create one" %}</a></p>
+{% endblock %}

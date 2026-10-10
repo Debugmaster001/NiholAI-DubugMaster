@@ -1,0 +1,33 @@
+{% load static i18n %}
+<footer class="footer-main">
+  <div class="container">
+
+    <!-- ── Top row: logo left · nav right ─────────────────── -->
+    <div class="footer-top">
+
+      <!-- Brand (navbar uslubida) -->
+      <a href="{% url 'core:index' %}" class="footer-brand d-inline-flex align-items-center gap-2" aria-label="Nihol AI">
+        {% include 'brand/_nihol_mark.html' with size=32 uid="foot" %}
+        <span style="font-weight:800;font-size:1.2rem;letter-spacing:-.3px;">Nihol<span style="color:#12d67a;"> AI</span></span>
+      </a>
+
+      <!-- Primary nav -->
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="{% url 'core:index' %}#hero"    class="footer-nav-link">{% trans "Home" %}</a>
+        <a href="{% url 'core:demo' %}"    class="footer-nav-link">{% trans "Demo" %}</a>
+        <a href="{% url 'core:index' %}#about-project" class="footer-nav-link">{% trans "About us" %}</a>
+        <a href="{% url 'core:index' %}#contact" class="footer-nav-link">{% trans "Contact" %}</a>
+      </nav>
+
+    </div>
+
+    <!-- ── Divider ─────────────────────────────────────────── -->
+    <div class="footer-divider" role="separator"></div>
+
+    <!-- ── Copyright ──────────────────────────────────────── -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Nihol AI · DubugMaster</p>
+    </div>
+
+  </div>
+</footer>
