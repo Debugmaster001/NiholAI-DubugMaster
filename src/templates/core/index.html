@@ -16,14 +16,14 @@
       <div class="row align-items-center gy-9">
         <!-- Copy -->
         <div class="col-lg-6 pt-lg-2">
+          {# One sapling symbol and one brand name across all languages. #}
           <span class="nv-hero-badge nv-reveal" style="--d:.05s">
-            <span class="nv-hero-badge-dot"></span>
-            {% trans "Hero badge" %}
+            <span aria-hidden="true">🌱</span> Nihol AI
           </span>
+          {# Use explicit copy here to avoid showing untranslated placeholder keys. #}
+          {% get_current_language as hero_language %}
           <h1 class="nv-hero-title nv-reveal" style="--d:.12s">
-            {% trans "Hero title line1" %}
-            <span class="nv-hero-accent">{% trans "Hero title highlight" %}</span>
-            {% trans "Hero title line2" %}
+            {% if hero_language == 'uz' %}Nihol AI'ga xush kelibsiz{% elif hero_language == 'ru' %}Добро пожаловать в Nihol AI{% else %}Welcome to Nihol AI{% endif %}
           </h1>
           <p class="nv-hero-sub nv-reveal" style="--d:.2s">
             {% trans "Hero subtitle" %}
