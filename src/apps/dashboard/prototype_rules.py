@@ -47,10 +47,22 @@ GREEN = [
 NEGATIONS=('emas','mavjud emas','yo‘q',"yo'q",'shug‘ullanmaydi',"shug'ullanmaydi",'ishlab chiqarilmay','faoliyat olib bormaydi','taqiqlangan','without ','not involved','not used','не производ','отсутствует','не ведет')
 
 
-def _find(text: str, term: str) -> Optional[tuple[int,int]]:
-    """Simple literal casefold match, no semantic guessing."""
-    p = text.casefold().find(term.casefold())
-    return (p,p+len(term)) if p >= 0 else None
+def _normalize_for_search(value: str) -> str:
+    """Normalize common Uzbek apostrophes and PDF Unicode variants for matching.
+
+    Preserve character positions: all substitutions are one character to one character.
+    """
+    return value.lower().translate(str.maketrans({
+        "‘": "'", "’": "'", "ʻ": "'", "ʼ": "'", "`": "'", "´": "'",
+        "–": "-", "—": "-", "‑": "-", "−": "-",
+    }))
+
+
+def _find(text: str, term: str) -> Optional[tuple[int, int]]:
+    normalized = _normalize_for_search(text)
+    needle = _normalize_for_search(term)
+    p = normalized.find(needle)
+    return (p, p + len(needle)) if p >= 0 else None
 
 
 def _negated(text: str, start: int, stop: int) -> bool:
