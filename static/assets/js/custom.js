@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Add transition class → smooth color switch
       html.classList.add('theme-switching');
       html.setAttribute('data-bs-theme', theme);
-      localStorage.setItem(STORAGE_KEY, theme);
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* storage unavailable */ }
       syncBtn(theme);
       // Remove after transition ends
       setTimeout(function () { html.classList.remove('theme-switching'); }, 320);
@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Respect OS-level changes (e.g. system auto mode switches at night)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
       // Only follow OS if user has NOT manually saved a preference
-      if (!localStorage.getItem(STORAGE_KEY)) {
+      let hasStoredTheme = false;
+      try { hasStoredTheme = Boolean(localStorage.getItem(STORAGE_KEY)); } catch (e) {}
+      if (!hasStoredTheme) {
         setTheme(e.matches ? 'dark' : 'light');
       }
     });
